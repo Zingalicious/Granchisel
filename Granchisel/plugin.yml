@@ -1,0 +1,5 @@
+name: Granchisel
+main: us.zingalicio.granchisel.Granchisel
+version: 0.0.5
+author: zingten11
+database: true
