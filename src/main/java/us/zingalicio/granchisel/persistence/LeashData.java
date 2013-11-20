@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="leash_data")
+@Table(name="granchisel_leash")
 public class LeashData
 {
 	@Id
