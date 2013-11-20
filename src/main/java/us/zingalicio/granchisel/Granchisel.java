@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import us.zingalicio.granchisel.persistence.ItemData;
 import us.zingalicio.granchisel.persistence.LeashData;
 
 public class Granchisel extends JavaPlugin
@@ -33,6 +34,7 @@ public class Granchisel extends JavaPlugin
 		try
 		{
 			getDatabase().find(LeashData.class).findRowCount();
+			getDatabase().find(ItemData.class).findRowCount();
 		}
 		catch (PersistenceException ex)
 		{
@@ -46,6 +48,7 @@ public class Granchisel extends JavaPlugin
 	{
 		List<Class<?>> list = new ArrayList<Class<?>>();
 		list.add(LeashData.class);
+		list.add(ItemData.class);
 		return list;
 	}
 }
