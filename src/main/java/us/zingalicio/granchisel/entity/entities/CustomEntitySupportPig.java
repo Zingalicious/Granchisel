@@ -1,8 +1,8 @@
 package us.zingalicio.granchisel.entity.entities;
 
-import net.minecraft.server.v1_6_R2.EntityPig;
-import net.minecraft.server.v1_6_R2.PathfinderGoalSelector;
-import net.minecraft.server.v1_6_R2.World;
+import net.minecraft.server.v1_7_R1.EntityPig;
+import net.minecraft.server.v1_7_R1.PathfinderGoalSelector;
+import net.minecraft.server.v1_7_R1.World;
 
 public class CustomEntitySupportPig extends EntityPig
 {

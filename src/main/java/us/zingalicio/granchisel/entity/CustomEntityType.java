@@ -1,7 +1,7 @@
 package us.zingalicio.granchisel.entity;
 
-import net.minecraft.server.v1_6_R2.EntityInsentient;
-import net.minecraft.server.v1_6_R2.EntityPig;
+import net.minecraft.server.v1_7_R1.EntityInsentient;
+import net.minecraft.server.v1_7_R1.EntityPig;
 
 import org.bukkit.entity.EntityType;
 
