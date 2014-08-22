@@ -7,24 +7,33 @@ import java.util.logging.Level;
 import javax.persistence.PersistenceException;
 
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
 
-import us.zingalicio.granchisel.persistence.ItemData;
-import us.zingalicio.granchisel.persistence.LeashData;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 
-public class Granchisel extends JavaPlugin
-{	
-	PluginManager pm;
-	GranchiselListener listener;
+import us.zingalicio.cordstone.ZingPlugin;
+import us.zingalicio.granchisel.commands.RefreshLeads;
+import us.zingalicio.granchisel.lead.LeadListener;
+import us.zingalicio.granchisel.persistence.LampData;
+
+public class Granchisel extends ZingPlugin
+{
+	private final LeadListener leadListener;
+	private final ProtocolManager protocolManager;
+	private final RefreshLeads refreshLeads;
+	
+	public Granchisel()
+	{
+		leadListener = new LeadListener(this);
+		protocolManager = ProtocolLibrary.getProtocolManager();
+		refreshLeads = new RefreshLeads(this);
+	}
 	
 	@Override
 	public void onEnable()
 	{
-		pm = this.getServer().getPluginManager();
-		listener = new GranchiselListener(this);
-		
-		pm.registerEvents(listener, this);
+		Bukkit.getPluginManager().registerEvents(leadListener, this);
+		getCommand("refreshleads").setExecutor(refreshLeads);
 		
 		setupDatabase();
 	}
@@ -33,8 +42,7 @@ public class Granchisel extends JavaPlugin
 	{
 		try
 		{
-			getDatabase().find(LeashData.class).findRowCount();
-			getDatabase().find(ItemData.class).findRowCount();
+			getDatabase().find(LampData.class).findRowCount();
 		}
 		catch (PersistenceException ex)
 		{
@@ -47,8 +55,11 @@ public class Granchisel extends JavaPlugin
 	public List<Class<?>> getDatabaseClasses()
 	{
 		List<Class<?>> list = new ArrayList<Class<?>>();
-		list.add(LeashData.class);
-		list.add(ItemData.class);
+		list.add(LampData.class);
 		return list;
+	}
+
+	public ProtocolManager getProtocolManager() {
+		return protocolManager;
 	}
 }

@@ -1,5 +1,10 @@
 name: Granchisel
 main: us.zingalicio.granchisel.Granchisel
-version: 0.0.5
+version: ${project.version}
+description: ${project.description}
 author: zingten11
+depend: [Cordstone, PowerNBT, ProtocolLib]
 database: true
+commands:
+  refreshleads:
+    aliases: [refreshleashes, rleads]
